@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<style type="text/css">
+		.bigbox{
+			overflow: hidden;
+			width: 380px;
+			color:#666;
+		}
+		.wrapbox{
+			height: 23px;
+			width: 93px;
+			float: left;
+			border-top: 1px solid #e5e5e5;
+			border-bottom: 1px solid #e5e5e5;
+			font-size: 12px;
+			color: #666;
+			text-align: center;
+			line-height: 23px;
+		}
+   		.leftbox{
+   			background-color: #f6f6f6;
+   			border-left: 1px solid #e5e5e5;
+   			position: relative;
+   		}
+   		.centerone{
+   			width: 95px;
+   			background-color: #108ee9;
+   			color: #fff;
+   			border: 0px ;
+   			height: 25px;
+   			position:relative;
+   		}
+   		.centertwo{
+   			width: 95px;
+   			position:relative;
+   		}
+   		.rightbox{
+   			border-right: 1px solid #e5e5e5;
+   			position:relative;
+   		}
+   		.toptri{
+   			width: 7px;
+   			height: 12px;
+   			background-color: #fff;
+   			-webkit-transform:skew(30deg);  
+            -moz-transform:skew(30deg);  
+            -o-transform:skew(30deg);  
+            -ms-transform:skew(30deg);  
+            transform:skew(30deg);
+   			border:1px solid #e5e5e5;
+   			border-color: #fff #fff #fff #e5e5e5;
+   			position: absolute;
+   			top: -2px;
+   			right: -5px;
+   			z-index: 100;
+   		}
+   		.bottomtri{
+   			width: 7px;
+   			height: 12px;
+   			background-color: #fff;
+   			-webkit-transform:skew(-30deg);  
+            -moz-transform:skew(-30deg);  
+            -o-transform:skew(-30deg);  
+            -ms-transform:skew(-30deg);  
+            transform:skew(-30deg);
+   			border:1px solid #e5e5e5;
+   			border-color: #fff #fff #fff #e5e5e5;
+   			border-top: 0px;
+   			position: absolute;
+   			bottom: -2px;
+   			right: -5px;
+   			z-index: 100;
+   		}
+   		.centerone .toptri{
+   			border-color: #fff #e5e5e5 #fff #fff;
+   			top: 0px;
+   		}
+   		.centerone .bottomtri{
+   			border-color: #fff #e5e5e5 #fff #fff;
+   			bottom: 0px;
+   		}
+   		.centertwo .toptri{
+   			border-color: #fff #e5e5e5 #fff #e5e5e5;
+   		}
+   		.centertwo .bottomtri{
+   			border-color: #fff #e5e5e5 #fff #e5e5e5;
+   		}
+   		.stopbox{
+   			width: 380px;
+   			height: 25px;
+   			margin-top: 10px;
+   			font-size: 12px;
+   			color: #d0021b;
+   			text-align: center;
+   			line-height: 25px;
+   			position: relative;
+   		}
+   		.stop{
+   			width: 93px;
+   			height: 23px;
+   			border: 1px solid #d0021b;
+   			position: absolute;
+   			top:0;
+   			right:0;
+   		}
+
+	</style>
+	<script type="text/javascript">
+		 window.onload = function(){
+	      	var arrayone= [{"name":"待接单","status":"WAIT_ACCEPT","isShadowed":true},{"name":"待发货","status":"WAIT_DELIVER","isShadowed":true,"isCurrentStatus":true},{"name":"验货入库","status":"STOCK_IN"},{"name":"已完成","status":"DELIVERED"}];
+			function arrow(_array){
+				var processbox = document.getElementById("process").childNodes;
+				var len = arrayone.length;
+				if(len==1){
+					document.getElementById("process").style.display='none'	;
+				} else {
+					for(var i=0;i<len;i++){
+						if(_array[i].isShadowed && _array[i].isCurrentStatus==undefined){
+							processbox[i].style.backgroundColor = "#F6F6F6";
+						}else if(_array[i].isShadowed && arrayone[i].isCurrentStatus){
+							processbox[i].style.backgroundColor ="#108ee9";	
+						}
+				   }
+				  }	
+			}
+    }
+	</script>
+</head>
+<body>
+	<div class="bigbox" id="process">
+		<div class="wrapbox leftbox">
+			<div class="toptri"></div>
+			<div class="bottomtri"></div>
+			<span>草稿</span>
+		</div>
+		<div class="wrapbox centerone">
+			<div class="toptri"></div>
+			<div class="bottomtri"></div>
+			<span>待审核</span>
+		</div>
+		<div class="wrapbox centertwo">
+			<div class="toptri"></div>
+			<div class="bottomtri"></div>
+			<span>待复核</span>
+		</div>
+		<div class="wrapbox rightbox">
+			<span>已核准</span>
+		</div>
+	</div>
+	<div class="stopbox" id="stopprocess">
+		<div class="stop">
+			<span>已中止</span>
+		</div>
+	</div>
+</body>
+</html>
